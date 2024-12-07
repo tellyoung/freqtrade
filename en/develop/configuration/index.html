@@ -564,6 +564,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#dry-run-wallet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dry-run wallet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#tradable-balance" class="md-nav__link">
     <span class="md-ellipsis">
       Tradable balance
@@ -2118,6 +2127,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#dry-run-wallet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dry-run wallet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#tradable-balance" class="md-nav__link">
     <span class="md-ellipsis">
       Tradable balance
@@ -2692,7 +2710,7 @@ In the below case, <code>max_open_trades</code> would be 3 after the merging - a
 </tr>
 <tr>
 <td><code>dry_run_wallet</code></td>
-<td>Define the starting amount in stake currency for the simulated wallet used by the bot running in Dry Run mode.<br><em>Defaults to <code>1000</code>.</em> <br> <strong>Datatype:</strong> Float</td>
+<td>Define the starting amount in stake currency for the simulated wallet used by the bot running in Dry Run mode. <a href="#dry-run-wallet">More information below</a><br><em>Defaults to <code>1000</code>.</em> <br> <strong>Datatype:</strong> Float or Dict</td>
 </tr>
 <tr>
 <td><code>cancel_open_orders_on_exit</code></td>
@@ -3162,6 +3180,21 @@ This exchange has also a limit on USD - where all orders must be &gt; 10$ - whic
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Since the limits on exchanges are usually stable and are not updated often, some pairs can show pretty high minimum limits, simply because the price increased a lot since the last limit adjustment by the exchange. Freqtrade adjusts the stake-amount to this value, unless it's &gt; 30% more than the calculated/desired stake-amount - in which case the trade is rejected.</p>
+</div>
+<h4 id="dry-run-wallet">Dry-run wallet<a class="headerlink" href="#dry-run-wallet" title="Permanent link">&para;</a></h4>
+<p>When running in dry-run mode, the bot will use a simulated wallet to execute trades. The starting balance of this wallet is defined by <code>dry_run_wallet</code> (defaults to 1000).
+For more complex scenarios, you can also assign a dictionary to <code>dry_run_wallet</code> to define the starting balance for each currency.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;dry_run_wallet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;BTC&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;ETH&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;USDT&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Command line options (<code>--dry-run-wallet</code>) can be used to override the configuration value, but only for the float value, not for the dictionary. If you'd like to use the dictionary, please adjust the configuration file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Balances not in stake-currency will not be used for trading, but are shown as part of the wallet balance.
+On Cross-margin exchanges, the wallet balance may be used to calculate the available collateral for trading.</p>
 </div>
 <h4 id="tradable-balance">Tradable balance<a class="headerlink" href="#tradable-balance" title="Permanent link">&para;</a></h4>
 <p>By default, the bot assumes that the <code>complete amount - 1%</code> is at it's disposal, and when using <a href="#dynamic-stake-amount">dynamic stake amount</a>, it will split the complete balance into <code>max_open_trades</code> buckets per trade.
