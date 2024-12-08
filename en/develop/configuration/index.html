@@ -2564,10 +2564,13 @@ As such - an environment variable defined as  <code>export FREQTRADE__STAKE_AMOU
 Using this scheme, all configuration settings will also be available as environment variables.</p>
 <p>Please note that Environment variables will overwrite corresponding settings in your configuration, but command line Arguments will always win.</p>
 <p>Common example:</p>
-<div class="highlight"><pre><span></span><code>FREQTRADE__TELEGRAM__CHAT_ID=&lt;telegramchatid&gt;
-FREQTRADE__TELEGRAM__TOKEN=&lt;telegramToken&gt;
-FREQTRADE__EXCHANGE__KEY=&lt;yourExchangeKey&gt;
-FREQTRADE__EXCHANGE__SECRET=&lt;yourExchangeSecret&gt;
+<div class="highlight"><pre><span></span><code><span class="nv">FREQTRADE__TELEGRAM__CHAT_ID</span><span class="o">=</span>&lt;telegramchatid&gt;
+<span class="nv">FREQTRADE__TELEGRAM__TOKEN</span><span class="o">=</span>&lt;telegramToken&gt;
+<span class="nv">FREQTRADE__EXCHANGE__KEY</span><span class="o">=</span>&lt;yourExchangeKey&gt;
+<span class="nv">FREQTRADE__EXCHANGE__SECRET</span><span class="o">=</span>&lt;yourExchangeSecret&gt;
+</code></pre></div>
+<p>Json lists are parsed as json - so you can use the following to set a list of pairs:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">FREQTRADE__EXCHANGE__PAIR_WHITELIST</span><span class="o">=</span><span class="s1">&#39;[&quot;BTC/USDT&quot;, &quot;ETH/USDT&quot;]&#39;</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2580,7 +2583,7 @@ FREQTRADE__EXCHANGE__SECRET=&lt;yourExchangeSecret&gt;
 <details class="warning">
 <summary>Loading sequence</summary>
 <p>Environment variables are loaded after the initial configuration. As such, you cannot provide the path to the configuration through environment variables. Please use <code>--config path/to/config.json</code> for that.
-This also applies to user_dir to some degree. while the user directory can be set through environment variables - the configuration will <strong>not</strong> be loaded from that location.</p>
+This also applies to <code>user_dir</code> to some degree. while the user directory can be set through environment variables - the configuration will <strong>not</strong> be loaded from that location.</p>
 </details>
 <h3 id="multiple-configuration-files">Multiple configuration files<a class="headerlink" href="#multiple-configuration-files" title="Permanent link">&para;</a></h3>
 <p>Multiple configuration files can be specified and used by the bot or the bot can read its configuration parameters from the process standard input stream.</p>
