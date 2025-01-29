@@ -9,4 +9,3 @@ freqtrade backtesting \
 --datadir /Users/yutieyang/Documents/yuty_projects/freqtrade/user_data/data/test_data \
 --strategy SampleStrategy \
 --dry-run-wallet 10000
-
